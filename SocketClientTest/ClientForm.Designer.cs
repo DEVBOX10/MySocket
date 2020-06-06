@@ -28,12 +28,26 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.btnConnet = new System.Windows.Forms.Button();
             this.txtPort = new System.Windows.Forms.TextBox();
             this.txtIP = new System.Windows.Forms.TextBox();
             this.txtMessage = new System.Windows.Forms.TextBox();
             this.btnSend = new System.Windows.Forms.Button();
+            this.btnDisconnect = new System.Windows.Forms.Button();
             this.txtResult = new System.Windows.Forms.TextBox();
             this.SuspendLayout();
+            // 
+            // btnConnet
+            // 
+            this.btnConnet.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnConnet.Location = new System.Drawing.Point(408, 85);
+            this.btnConnet.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.btnConnet.Name = "btnConnet";
+            this.btnConnet.Size = new System.Drawing.Size(98, 36);
+            this.btnConnet.TabIndex = 5;
+            this.btnConnet.Text = "Connect";
+            this.btnConnet.UseVisualStyleBackColor = true;
+            this.btnConnet.Click += new System.EventHandler(this.btnConnet_Click);
             // 
             // txtPort
             // 
@@ -45,7 +59,6 @@
             this.txtPort.Size = new System.Drawing.Size(601, 22);
             this.txtPort.TabIndex = 4;
             this.txtPort.Text = "1010";
-            this.txtPort.UseWaitCursor = true;
             // 
             // txtIP
             // 
@@ -56,8 +69,7 @@
             this.txtIP.Name = "txtIP";
             this.txtIP.Size = new System.Drawing.Size(601, 22);
             this.txtIP.TabIndex = 3;
-            this.txtIP.Text = "172.16.24.208";
-            this.txtIP.UseWaitCursor = true;
+            this.txtIP.Text = "127.0.0.1";
             // 
             // txtMessage
             // 
@@ -70,7 +82,6 @@
             this.txtMessage.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
             this.txtMessage.Size = new System.Drawing.Size(601, 135);
             this.txtMessage.TabIndex = 6;
-            this.txtMessage.UseWaitCursor = true;
             // 
             // btnSend
             // 
@@ -82,8 +93,19 @@
             this.btnSend.TabIndex = 7;
             this.btnSend.Text = "Send";
             this.btnSend.UseVisualStyleBackColor = true;
-            this.btnSend.UseWaitCursor = true;
             this.btnSend.Click += new System.EventHandler(this.btnSend_Click);
+            // 
+            // btnDisconnect
+            // 
+            this.btnDisconnect.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnDisconnect.Location = new System.Drawing.Point(512, 85);
+            this.btnDisconnect.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.btnDisconnect.Name = "btnDisconnect";
+            this.btnDisconnect.Size = new System.Drawing.Size(98, 36);
+            this.btnDisconnect.TabIndex = 8;
+            this.btnDisconnect.Text = "Disconnect";
+            this.btnDisconnect.UseVisualStyleBackColor = true;
+            this.btnDisconnect.Click += new System.EventHandler(this.btnDisconnect_Click);
             // 
             // txtResult
             // 
@@ -97,32 +119,35 @@
             this.txtResult.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
             this.txtResult.Size = new System.Drawing.Size(601, 122);
             this.txtResult.TabIndex = 9;
-            this.txtResult.UseWaitCursor = true;
             // 
-            // ClientForm
+            // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(622, 508);
             this.Controls.Add(this.txtResult);
+            this.Controls.Add(this.btnDisconnect);
             this.Controls.Add(this.btnSend);
             this.Controls.Add(this.txtMessage);
+            this.Controls.Add(this.btnConnet);
             this.Controls.Add(this.txtPort);
             this.Controls.Add(this.txtIP);
             this.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.Name = "ClientForm";
-            this.Text = "MyClient";
-            this.UseWaitCursor = true;
+            this.Name = "Form1";
+            this.Text = "GateClient";
             this.ResumeLayout(false);
             this.PerformLayout();
 
         }
 
         #endregion
+
+        private System.Windows.Forms.Button btnConnet;
         private System.Windows.Forms.TextBox txtPort;
         private System.Windows.Forms.TextBox txtIP;
         private System.Windows.Forms.TextBox txtMessage;
         private System.Windows.Forms.Button btnSend;
+        private System.Windows.Forms.Button btnDisconnect;
         private System.Windows.Forms.TextBox txtResult;
     }
 }

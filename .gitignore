@@ -10,3 +10,5 @@
 /SocketServerTest/bin/Debug
 /SocketServerTest/obj
 /File
+/MySocketClientTest/obj
+/MySocketClientTest/bin/Debug/netcoreapp3.1

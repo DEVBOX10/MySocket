@@ -1,12 +1,9 @@
-﻿using Common;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
-using System.IO;
 using System.Linq;
-using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -15,48 +12,103 @@ namespace SocketClientTest
 {
     public partial class ClientForm : Form
     {
+        MySocketClient _Client = new MySocketClient();
+        MySocketClient2 _ClientAsync = new MySocketClient2();
+
         public ClientForm()
         {
             InitializeComponent();
-        }
-
-        private string _pathClient => Path.Combine(Directory.GetParent(Directory.GetCurrentDirectory()).Parent.Parent.FullName, "File", "Client");
-        private string _pathServer => Path.Combine(Directory.GetParent(Directory.GetCurrentDirectory()).Parent.Parent.FullName, "File", "Server");
-
-        protected override void OnLoad(EventArgs e)
-        {
-            base.OnLoad(e);
-
-            var di = new DirectoryInfo(_pathServer);
-            di.Create();
-
-            di = new DirectoryInfo(_pathClient);
-            di.Create();
-
-            FileSystemWatcher watcher = new FileSystemWatcher();
-            watcher.Path = _pathClient;
-            watcher.Filter = "*.txt";
-            watcher.Changed += Watcher_Changed;
-            watcher.EnableRaisingEvents = true;
-        }
-
-        private void Watcher_Changed(object sender, FileSystemEventArgs e)
-        {
-            var txt = Util.ReadFile(e.FullPath);
-            this.txtResult.Text += "\r\n" + txt;
         }
 
         private void btnSend_Click(object sender, EventArgs e)
         {
             try
             {
-                var txt = this.txtMessage.Text.Trim();
-                Util.WriteFile(txt, _pathServer);
+                var text = this.txtMessage.Text.Trim();
+                //text += "^"; // End of Text 
+
+                //_Client.SendText(text);
+                _ClientAsync.SendText(text);
+            }
+            catch(Exception ex)
+            {
+                this.txtResult.Text += "\r\n" + ex.Message;
+                UpdateControls();
+            }
+        }
+
+
+        protected override void OnLoad(EventArgs e)
+        {
+            base.OnLoad(e);
+            TextBox.CheckForIllegalCrossThreadCalls = false;
+            //this._ClientCallback._ActionSender = new Action<object, TEventArgs>(OnActionMessage);
+
+            UpdateControls();
+        }
+        
+        protected override void OnClosing(CancelEventArgs e)
+        {
+            base.OnClosing(e);
+
+            //this._ClientCallback.Release();
+        }
+        private void btnConnet_Click(object sender, EventArgs e)
+        {
+            this.Cursor = Cursors.WaitCursor;
+            try
+            {
+                var ip = this.txtIP.Text.Trim();
+                var port = Convert.ToInt32(this.txtPort.Text.Trim());
+
+                //_Client.ServerIP = ip;
+                //_Client.Port = port;
+                //_Client.Connect();
+
+
+                this._ClientAsync.ServerIP = ip;
+                this._ClientAsync.Port = port;
+                this._ClientAsync.Connect();
             }
             catch (Exception ex)
             {
                 this.txtResult.Text += "\r\n" + ex.Message;
+                UpdateControls();
             }
+            finally
+            {
+                this.Cursor = Cursors.Default;
+            }
+        }
+
+        private void btnDisconnect_Click(object sender, EventArgs e)
+        {
+            this.Cursor = Cursors.WaitCursor;
+            try
+            {
+                if (this._ClientAsync.Connected)
+                    this._ClientAsync.Release();
+
+                //CheckConnect();
+            }
+            catch (Exception ex)
+            {
+                this.txtResult.Text += "\r\n" + ex.Message;
+                UpdateControls();
+            }
+            finally
+            {
+                this.Cursor = Cursors.Default;
+            }
+        }
+
+        private void UpdateControls()
+        {
+            if (this._ClientAsync.Connected)
+                this.btnConnet.Enabled = false;
+            else
+                this.btnConnet.Enabled = true;
+
         }
     }
 }

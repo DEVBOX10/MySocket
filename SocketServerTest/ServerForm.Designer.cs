@@ -30,9 +30,11 @@
         {
             this.txtIP = new System.Windows.Forms.TextBox();
             this.txtPort = new System.Windows.Forms.TextBox();
+            this.btnGo = new System.Windows.Forms.Button();
             this.txtResult = new System.Windows.Forms.TextBox();
             this.txtMessage = new System.Windows.Forms.TextBox();
             this.btnSend = new System.Windows.Forms.Button();
+            this.btnClose = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // txtIP
@@ -44,7 +46,7 @@
             this.txtIP.Name = "txtIP";
             this.txtIP.Size = new System.Drawing.Size(602, 22);
             this.txtIP.TabIndex = 0;
-            this.txtIP.Text = "172.16.24.208";
+            this.txtIP.Text = "127.0.0.1";
             // 
             // txtPort
             // 
@@ -56,6 +58,18 @@
             this.txtPort.Size = new System.Drawing.Size(602, 22);
             this.txtPort.TabIndex = 1;
             this.txtPort.Text = "1010";
+            // 
+            // btnGo
+            // 
+            this.btnGo.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnGo.Location = new System.Drawing.Point(473, 68);
+            this.btnGo.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.btnGo.Name = "btnGo";
+            this.btnGo.Size = new System.Drawing.Size(67, 28);
+            this.btnGo.TabIndex = 2;
+            this.btnGo.Text = "Start";
+            this.btnGo.UseVisualStyleBackColor = true;
+            this.btnGo.Click += new System.EventHandler(this.btnGo_Click);
             // 
             // txtResult
             // 
@@ -94,19 +108,33 @@
             this.btnSend.UseVisualStyleBackColor = true;
             this.btnSend.Click += new System.EventHandler(this.btnSend_Click);
             // 
+            // btnClose
+            // 
+            this.btnClose.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnClose.Location = new System.Drawing.Point(546, 68);
+            this.btnClose.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.btnClose.Name = "btnClose";
+            this.btnClose.Size = new System.Drawing.Size(67, 28);
+            this.btnClose.TabIndex = 6;
+            this.btnClose.Text = "Close";
+            this.btnClose.UseVisualStyleBackColor = true;
+            this.btnClose.Click += new System.EventHandler(this.btnClose_Click);
+            // 
             // ServerForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(626, 518);
+            this.Controls.Add(this.btnClose);
             this.Controls.Add(this.btnSend);
             this.Controls.Add(this.txtMessage);
             this.Controls.Add(this.txtResult);
+            this.Controls.Add(this.btnGo);
             this.Controls.Add(this.txtPort);
             this.Controls.Add(this.txtIP);
             this.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.Name = "ServerForm";
-            this.Text = "MyServer";
+            this.Text = "GateServer";
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -116,9 +144,11 @@
 
         private System.Windows.Forms.TextBox txtIP;
         private System.Windows.Forms.TextBox txtPort;
+        private System.Windows.Forms.Button btnGo;
         private System.Windows.Forms.TextBox txtResult;
         private System.Windows.Forms.TextBox txtMessage;
         private System.Windows.Forms.Button btnSend;
+        private System.Windows.Forms.Button btnClose;
     }
 }
 
