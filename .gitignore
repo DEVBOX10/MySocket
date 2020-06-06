@@ -3,3 +3,10 @@
 ################################################################################
 
 /.vs/MySocket/v16/.suo
+/Common/bin/Debug
+/Common/obj
+/SocketClientTest/bin/Debug
+/SocketClientTest/obj
+/SocketServerTest/bin/Debug
+/SocketServerTest/obj
+/File
